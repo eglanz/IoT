@@ -21,9 +21,9 @@ development:
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: <%=ENV['C9_USER']%>
-  password: <%=ENV['IP']%>
   database: c9
+  username: <%=ENV['C9_USER']%>
+  host: <%=ENV['IP']%>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -53,8 +53,8 @@ test:
 #
 production:
   adapter: mysql2
-    encoding: utf8
-    database: heroku_89efd989d59c570
-    username: bc6fc0d9c6d0c7
-    password: 295f5efa
-    host: us-cdbr-iron-east-02.cleardb.net
+  encoding: utf8
+  database: heroku_89efd989d59c570
+  username: bc6fc0d9c6d0c7
+  password: 295f5efa
+  host: us-cdbr-iron-east-02.cleardb.net
