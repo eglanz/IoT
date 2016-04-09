@@ -56,5 +56,5 @@ production:
   encoding: utf8
   database: heroku_89efd989d59c570
   username: bc6fc0d9c6d0c7
-  password: 295f5efa
+  password: 1facb01224fceb9
   host: us-cdbr-iron-east-03.cleardb.net
