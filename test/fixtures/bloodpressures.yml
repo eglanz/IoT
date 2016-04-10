@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  testid: 1
+  min: 
+  max: 
+  average: 
+  type: 1
+
+two:
+  testid: 1
+  min: 
+  max: 
+  average: 
+  type: 1

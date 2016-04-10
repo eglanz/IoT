@@ -1,0 +1,23 @@
+<center>
+<h1>Test Details</h1>
+<br>
+<%= form_for :test, url: tests_path do |f| %>
+   <p>
+        <%= f.label :patient_name, 'Patient Name' %><br>
+        <%= f.text_field :patient_name %>
+    </p>
+    
+    
+    <p>
+        <%= f.label :video, 'Choose Video' %><br>
+        <%= f.select :video, [['Video 1','video1'],['Video 2','video2'],['Video 3','video3'], ['No VR','novr']] %>
+    </p>
+    
+    <p>
+        <%= f.submit 'Start Test', :class => "btn sub btn-info" %>
+    </p>
+
+<% end %>
+
+<%= link_to 'Home', controller: 'welcome', action: 'index' %>
+</center>

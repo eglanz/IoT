@@ -5,6 +5,42 @@
 Create a new test!
 <br>
 <br>
+<br>
+<% if @tests.blank? %>
+<%= link_to :action => 'new', :controller => 'tests' do %>
+New Test
+<%end%>
+<% else %>
+<%= link_to :action => 'new', :controller => 'tests' do %>
+New Test
+<%end%>
+<br>
+<table class="table-striped">
+  <tr>
+    <th> Test Id </th>
+    <th> Patient Name </th>
+    <th> Baseline Heart Rate Average </th>
+    <th> Test Heart Rate Average </th>
+  </tr>
+ 
+  <% @tests.each do |test| %>
+    <tr>
+      <td><%= test.id %></td>
+      <td><%= test.patient_name %></td>
+      <% if Heart.where(testid: test.id, bort: 1).first != nil %>
+      <td><%= Heart.where(testid: test.id, bort: 1).first.average %></td>
+      <%else%>
+      <td>None</td>
+      <%end%>
+      <% if Heart.where(testid: test.id, bort: 2).first != nil %>
+      <td><%= Heart.where(testid: test.id, bort: 2).first.average %></td>
+      <%else%>
+      <td>None</td>
+      <%end%>
+    </tr>
+  <% end %>
+</table>
+<% end %>
 
 <br>
 <br>

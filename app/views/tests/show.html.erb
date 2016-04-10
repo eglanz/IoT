@@ -1,0 +1,175 @@
+<br>
+<br>
+<div class="jumbotron text-center">
+<p>
+    <strong>Patient Name:</strong>
+    <%= @test.patient_name %>
+</p>
+
+<p>
+    <strong>Video:</strong>
+    <%= @test.video %>
+</p>
+
+<p>
+    <strong>Test ID:</strong>
+    <%= @test.id %>
+    <div id="workaround" class="workaround"><%= @test.id %></div>
+</p>
+<br>
+<button type="button" id="baseline_button" class="btn btn-info">Get Baseline Measurements</button>
+<br>
+<br>
+<div id="baseline_div">
+<%= render 'baseline' %>
+</div>
+<br>
+<br>
+<button type="button" id="test_button" class="btn btn-primary">Get Test Measurements</button>
+<br>
+<div id="test_div">
+<%= render 'test' %>
+</div>
+<br>
+<div id="finished">
+    <h1>TEST COMPLETE!</h1>
+</div>
+</div>
+<%= link_to 'Home', controller: 'welcome', action: 'index' %>
+<script>
+$(function(){
+    setTimeout(updateProgress, 1000);
+});
+function updateProgress(){
+   var id = $("#workaround").html();
+   
+   var url = "/tests/"+id
+   $.getScript(url);
+  
+   /*$.get('/welcome/test_status', function(data){
+        if(data == 0){
+            //Test Done
+            
+        } else {
+            
+        
+        }
+    });*/
+    var url20 = "/status/test?test="+id
+    
+     $.get(url20, function(data){
+        if(data == 0){
+            $('#test_button').hide();
+            $('#baseline_div').hide();
+            $('#test_div').hide();
+            $('#baseline_button').show();
+            $('#finished').hide();
+    
+            $('#baseline_button').click(function(){
+                $('#baseline_button').hide();
+                $('#baseline_div').show();
+                var id = $("#workaround").html();
+                var url2 = "/status/baseline_clicked?test="+id
+                $.get(url2);
+            });
+            
+        } else if(data == 1 || data == 2) {
+            $('#baseline_button').hide();
+            $('#baseline_div').show();
+            $('#test_button').hide();
+            $('#test_div').hide();
+            $('#finished').hide();
+        } else if(data == 3){
+            $('#baseline_button').hide();
+            $('#baseline_div').show();
+            $('#test_button').show();
+            $('#test_div').hide();
+            $('#finished').hide();
+            
+            $('#test_button').click(function(){
+                $('#test_button').hide();
+                $('#test_div').show();
+                var id = $("#workaround").html();
+                var url3 = "/status/test_clicked?test="+id
+                $.get(url3);
+            });
+        }else if(data == 4 || data == 5 || data == 6){
+            $('#test_button').hide();
+            $('#baseline_div').show();
+            $('#test_div').show();
+            $('#baseline_button').hide();
+            $('#finished').hide();
+        }else if(data == 7){
+            $('#test_button').hide();
+            $('#baseline_div').show();
+            $('#test_div').show();
+            $('#baseline_button').hide();
+            $('#finished').show();
+        }
+        
+    });
+    
+    setTimeout(updateProgress, 1000);
+}
+
+$(document).ready(function(){
+    var id = $("#workaround").html();
+   
+    var url = "/status/test?test="+id
+
+    $.get(url, function(data){
+        if(data == 0){
+            $('#test_button').hide();
+            $('#baseline_div').hide();
+            $('#test_div').hide();
+            $('#baseline_button').show();
+            $('#finished').hide();
+    
+            $('#baseline_button').click(function(){
+                $('#baseline_button').hide();
+                $('#baseline_div').show();
+                var id = $("#workaround").html();
+                var url2 = "/status/baseline_clicked?test="+id
+                $.get(url2);
+            });
+            
+        } else if(data == 1 || data == 2) {
+            $('#baseline_button').hide();
+            $('#baseline_div').show();
+            $('#test_button').hide();
+            $('#test_div').hide();
+            $('#finished').hide();
+        } else if(data == 3){
+            $('#baseline_button').hide();
+            $('#baseline_div').show();
+            $('#test_button').show();
+            $('#test_div').hide();
+            $('#finished').hide();
+            
+            $('#test_button').click(function(){
+                $('#test_button').hide();
+                $('#test_div').show();
+                var id = $("#workaround").html();
+                var url3 = "/status/test_clicked?test="+id
+                $.get(url3);
+            });
+        }else if(data == 4 || data == 5 || data == 6){
+            $('#test_button').hide();
+            $('#baseline_div').show();
+            $('#test_div').show();
+            $('#baseline_button').hide();
+            $('#finished').hide();
+        }else if(data == 7){
+            $('#test_button').hide();
+            $('#baseline_div').show();
+            $('#test_div').show();
+            $('#baseline_button').hide();
+            $('#finished').show();
+        }
+        
+    });
+ 
+    
+});
+
+</script>

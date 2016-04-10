@@ -11,6 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160410211454) do
+
+  create_table "bloodpressures", force: :cascade do |t|
+    t.integer  "testid",     limit: 4
+    t.float    "min",        limit: 24
+    t.float    "max",        limit: 24
+    t.float    "average",    limit: 24
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "bort",       limit: 4
+  end
+
+  create_table "hearts", force: :cascade do |t|
+    t.integer  "testid",     limit: 4
+    t.float    "min",        limit: 24
+    t.float    "max",        limit: 24
+    t.float    "average",    limit: 24
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "bort",       limit: 4
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.string   "patient_name", limit: 255
+    t.string   "video",        limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "teststatuses", force: :cascade do |t|
+    t.integer  "testid",     limit: 4
+    t.integer  "status",     limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
 end
