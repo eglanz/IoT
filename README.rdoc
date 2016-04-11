@@ -32,7 +32,7 @@ json:
 For type: 1 = baseline, 2 = test
 
 Test Start Status:
-get start/status
+get "https://internetofthingsapp.herokuapp.com/status/start"
 
 returns -1 for no test, testid value for test
 
