@@ -1,28 +1,44 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+API Calls:
 
-Things you may want to cover:
+Add Heart Rate:
+post 'https://internetofthingsapp.herokuapp.com/hearts/new'
+json:
+    {
+        "testid": value,
+        "min": value,
+        "max": value,
+        "average": value,
+        "type": value
+    }
 
-* Ruby version
+For type: 1 = baseline, 2 = test
 
-* System dependencies
+Add Blood Pressure:
+post 'https://internetofthingsapp.herokuapp.com/bloodpressures/new'
+json:
+    {
+        "testid": value,
+        "min_systolic": value,
+        "max_systolic": value,
+        "average_systolic": value,
+        "min_diastolic": value,
+        "max_diastolic": value,
+        "average_diastolic": value,
+        "type": value
+    }
 
-* Configuration
+For type: 1 = baseline, 2 = test
 
-* Database creation
+Test Start Status:
+get start/status
 
-* Database initialization
+returns -1 for no test, testid value for test
 
-* How to run the test suite
+Test Status For Baseline or Test particularly:
+get "https://internetofthingsapp.herokuapp.com/status/test?test=TESTID"
 
-* Services (job queues, cache servers, search engines, etc.)
+where TESTID is test id 
 
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+returns 1 for baseline request and 4 for test request

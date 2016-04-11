@@ -12,6 +12,12 @@ Rails.application.routes.draw do
   
   get 'hearts/new' => 'hearts#new'
   get 'bloodpressures/new' => 'bloodpressures#new'
+  
+  post 'hearts/new' => 'hearts#new'
+  post 'bloodpressures/new' => 'bloodpressures#new'
+  
+  get 'status/start' => 'tests#start'
+  get 'status/set_start' => 'tests#set_start'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

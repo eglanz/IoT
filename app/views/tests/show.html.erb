@@ -45,16 +45,10 @@ function updateProgress(){
    
    var url = "/tests/"+id
    $.getScript(url);
-  
-   /*$.get('/welcome/test_status', function(data){
-        if(data == 0){
-            //Test Done
-            
-        } else {
-            
-        
-        }
-    });*/
+   
+   var set_s = "/status/set_start?test="+id
+   $.get(set_s);
+
     var url20 = "/status/test?test="+id
     
      $.get(url20, function(data){
@@ -105,6 +99,10 @@ function updateProgress(){
             $('#test_div').show();
             $('#baseline_button').hide();
             $('#finished').show();
+            
+            var zero = 0
+            var set_s = "/status/set_start?test="+zero
+            $.get(set_s);
         }
         
     });
@@ -165,6 +163,10 @@ $(document).ready(function(){
             $('#test_div').show();
             $('#baseline_button').hide();
             $('#finished').show();
+            
+            var zero = 0
+            var set_s = "/status/set_start?test="+zero
+            $.get(set_s);
         }
         
     });
