@@ -1,0 +1,18 @@
+===== Messages from Arduino =====
+
+New Heart Rate
+NHR,<Heart rate (bpm)>\n
+
+New Blood Pressue
+NBP,<systolic>,<diastolic>\n
+
+New Sweat Measurement
+NS,<sweat>\n
+
+===== Messages to Arduino =====
+
+Start collecting data
+START\n
+
+Stop collecting data
+STOP\n
