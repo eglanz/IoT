@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   
   get 'status/start' => 'tests#start'
   get 'status/set_start' => 'tests#set_start'
+  
+  get 'welcome/view_analytics' => 'welcome#view_analytics'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

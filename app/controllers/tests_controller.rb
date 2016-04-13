@@ -6,6 +6,7 @@ class TestsController < ApplicationController
     def new
     end
     
+    #to do: refactor so repeated code is gone
     def show
         @test = Test.find(params[:id])
         @baseline_heart = Heart.where(testid: @test.id, bort: 1).first

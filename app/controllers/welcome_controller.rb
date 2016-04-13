@@ -7,4 +7,8 @@ class WelcomeController < ApplicationController
         end
         
     end
+    
+    def view_analytics
+        
+    end
 end

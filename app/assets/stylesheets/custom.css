@@ -1,0 +1,19 @@
+body{
+   background-color: #4a4849;
+   color: #b2d6e2;
+   background-position: center;
+   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+div.btn-toolbar{
+    display: inline-block;
+}
+
+table.table{
+    width: 70%;
+}
+
+thead.thead-default{
+    background-color: #4a4849;
+    color: #ffffff;
+}
