@@ -25,7 +25,9 @@ class WelcomeController < ApplicationController
                 @vr_tests.push(@tests[t])
             end
         end
-        
+        if @novr_tests.length == 0 || @vr_tests.length == 0
+            return
+        end
         #@table = [[1,-1,3],[2,-1,2],[3,-1,2],[20,20,-1],[12,14,-1],[10,15,-1],[20,14,-1],[20,15,-1],[10,11,-1],[15,16,-1],[10,-1,10],[1,1,-1],[1, -1, 2], [2, -1, 1],[0,-1,1],[14,14,-1]];
         #puts tests.length
         @tableVR = Array.new(@vr_tests.length){Array.new(2){nil}}
