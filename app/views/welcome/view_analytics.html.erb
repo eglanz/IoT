@@ -2,3 +2,51 @@
 <h1>Internet of Things</h1>
 <h3>Paul Johnson, Jacob Rodgers, Mike Tappan, Emily Glanz</h3>
 </div>
+<center>
+<div id="chart_div" style="width: 900px; height: 500px;"></div>
+</center>
+
+ <script type="text/javascript">
+     google.charts.load('current', {'packages':['scatter']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart () {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('number', 'Change in Heart Rate');
+        data.addColumn('number', 'Virtual Reality');
+        data.addColumn('number', 'No Virtual Reality');
+
+        data.addRows([
+          [1,null,3],[2,null,2],[3,null,2],
+          [20,20,null],[12,14,null],[10,15,null],
+          [20,14,null],[20,15,null],[10,11,null],
+          [15,16,null],[10,null,10],[1,1,null],
+          [1, null, 2], [2, null, 1],[0,null,1],
+          [14,14,null]
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Virtual Reality vs No Virtual Reality'
+          },
+          width: 800,
+          height: 500,
+          series: {
+            0: {axis: 'vr'},
+            1: {axis: 'no vr'}
+          },
+          axes: {
+            y: {
+              'vr': {label: 'Change in Blood Pressure'},
+              'no vr': {label: ''}
+            }
+          }
+        };
+
+        var chart = new google.charts.Scatter(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+
+      }
+    </script>
