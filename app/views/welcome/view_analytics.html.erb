@@ -4,43 +4,35 @@
 </div>
 <center>
 <div id="chart_div" style="width: 900px; height: 500px;"></div>
+<br>
+<br>
+<div id="chart_div_cluster" style="width: 900px; height: 500px;"></div>
+<br>
+<br>
 <%= content_tag "div", id: "vrData", data: { vr: @tableVR} do %>
 <% end %>
 <%= content_tag "div", id: "novrData", data: { novr: @tableNoVR} do %>
 <% end %>
+<%= content_tag "div", id: "cluster1Data", data: { cluster1: @tableCluster1} do %>
+<% end %>
+<%= content_tag "div", id: "cluster0Data", data: { cluster0: @tableCluster0} do %>
+<% end %>
+<%= link_to 'Home', controller: 'welcome', action: 'index' %>
 </center>
 
  <script type="text/javascript">
  $('#vrData').hide();
  $('#novrData').hide();
+ $('#cluster0Data').hide();
+ $('#cluster1Data').hide();
      google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart () {
-
-        /*var data = new google.visualization.DataTable();
-        data.addColumn('number', 'Change in Heart Rate');
-        data.addColumn('number', 'Virtual Reality');
-        //data.addColumn('number', 'No Virtual Reality');
-
-        //$('the_data').data('stuff');
-        var dat_data = $('#the_data').data('thedata');
-        console.log(dat_data);
-        for(var j in dat_data){
-          for(var k in dat_data[j]){
-            if(dat_data[j][k] == 'Replace Me'){
-              dat_data[j][k] = null;
-            }
-          }
-        }
-        console.log(dat_data);
-        //var data2 = [[[1,2],[2,1]],[[2,3],[3,2]]]
-        data1 = [[1,2],[2,1]]
-        data2 = [[2,2], [3,4]]*/
         
         var data1 = new google.visualization.DataTable();
-    data1.addColumn('number', 'Change in Heart Rate');
-    data1.addColumn('number', 'Virtual Reality');
+        data1.addColumn('number', 'Change in Heart Rate');
+        data1.addColumn('number', 'Virtual Reality');
     
     var dataVR = $('#vrData').data('vr');
 
@@ -72,6 +64,42 @@
         var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
 
         chart.draw(joinedData, options);
+        
+        
+        var data3 = new google.visualization.DataTable();
+        data3.addColumn('number', 'Change in Heart Rate');
+        data3.addColumn('number', 'Cluster0');
+    
+    var dataC0 = $('#cluster0Data').data('cluster0');
+
+    
+    data3.addRows(dataC0);
+    
+    var data4 = new google.visualization.DataTable();
+    data4.addColumn('number', 'Change in Heart Rate');
+    data4.addColumn('number', 'Cluster1');
+    
+    var dataC1 = $('#cluster1Data').data('cluster1');
+     
+    data4.addRows(dataC1);
+        
+        var joinedData2 = google.visualization.data.join(data3, data4, 'full', [[0, 0]], [1], [1]);
+        //data.addRows(joinedData);
+        
+
+        var options2 = {
+          title: 'Calm vs Not Calm',
+          width: 800,
+          height: 500,
+          hAxis: {title: 'Change in Heart Rate'/*, minValue: 0, maxValue: 15*/},
+          vAxis: {title: 'Change in Systolic Blood Pressure'/*, minValue: 0, maxValue: 15*/},
+          
+          
+        };
+
+        var chart2 = new google.visualization.ScatterChart(document.getElementById('chart_div_cluster'));
+
+        chart2.draw(joinedData2, options2);
 
       }
     </script>
