@@ -4,49 +4,74 @@
 </div>
 <center>
 <div id="chart_div" style="width: 900px; height: 500px;"></div>
+<%= content_tag "div", id: "vrData", data: { vr: @tableVR} do %>
+<% end %>
+<%= content_tag "div", id: "novrData", data: { novr: @tableNoVR} do %>
+<% end %>
 </center>
 
  <script type="text/javascript">
-     google.charts.load('current', {'packages':['scatter']});
+ $('#vrData').hide();
+ $('#novrData').hide();
+     google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart () {
 
-        var data = new google.visualization.DataTable();
+        /*var data = new google.visualization.DataTable();
         data.addColumn('number', 'Change in Heart Rate');
         data.addColumn('number', 'Virtual Reality');
-        data.addColumn('number', 'No Virtual Reality');
+        //data.addColumn('number', 'No Virtual Reality');
 
-        data.addRows([
-          [1,null,3],[2,null,2],[3,null,2],
-          [20,20,null],[12,14,null],[10,15,null],
-          [20,14,null],[20,15,null],[10,11,null],
-          [15,16,null],[10,null,10],[1,1,null],
-          [1, null, 2], [2, null, 1],[0,null,1],
-          [14,14,null]
-        ]);
-
-        var options = {
-          chart: {
-            title: 'Virtual Reality vs No Virtual Reality'
-          },
-          width: 800,
-          height: 500,
-          series: {
-            0: {axis: 'vr'},
-            1: {axis: 'no vr'}
-          },
-          axes: {
-            y: {
-              'vr': {label: 'Change in Blood Pressure'},
-              'no vr': {label: ''}
+        //$('the_data').data('stuff');
+        var dat_data = $('#the_data').data('thedata');
+        console.log(dat_data);
+        for(var j in dat_data){
+          for(var k in dat_data[j]){
+            if(dat_data[j][k] == 'Replace Me'){
+              dat_data[j][k] = null;
             }
           }
+        }
+        console.log(dat_data);
+        //var data2 = [[[1,2],[2,1]],[[2,3],[3,2]]]
+        data1 = [[1,2],[2,1]]
+        data2 = [[2,2], [3,4]]*/
+        
+        var data1 = new google.visualization.DataTable();
+    data1.addColumn('number', 'Change in Heart Rate');
+    data1.addColumn('number', 'Virtual Reality');
+    
+    var dataVR = $('#vrData').data('vr');
+
+    
+    data1.addRows(dataVR);
+    
+    var data2 = new google.visualization.DataTable();
+    data2.addColumn('number', 'Change in Heart Rate');
+    data2.addColumn('number', 'No Virtual Reality');
+    
+    var dataNoVR = $('#novrData').data('novr');
+     
+    data2.addRows(dataNoVR);
+        
+        var joinedData = google.visualization.data.join(data1, data2, 'full', [[0, 0]], [1], [1]);
+        //data.addRows(joinedData);
+        
+
+        var options = {
+          title: 'Virtual Reality vs No Virtual Reality',
+          width: 800,
+          height: 500,
+          hAxis: {title: 'Change in Heart Rate'/*, minValue: 0, maxValue: 15*/},
+          vAxis: {title: 'Change in Systolic Blood Pressure'/*, minValue: 0, maxValue: 15*/},
+          
+          
         };
 
-        var chart = new google.charts.Scatter(document.getElementById('chart_div'));
+        var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
 
-        chart.draw(data, options);
+        chart.draw(joinedData, options);
 
       }
     </script>
